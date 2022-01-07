@@ -46,7 +46,7 @@ export class Login extends Component{
                     ? 
                     <div>
                         <button id="dropDownInit" data-dropdown-toggle="userDropdownToggle" onClick={() => this.setState({showDropDown: !this.state.showDropDown})} type="button">
-                            <div className="bg-slate-200 px-4 flex space-x-4 rounded-full">
+                            <div className="px-4 flex space-x-4 rounded hover:bg-slate-600">
                                 <div className="flex space-x-6 items-center h-12">
                                     {
                                         this.props.user ?  
@@ -55,11 +55,11 @@ export class Login extends Component{
                                     }
                                     {
                                         this.props.user ?
-                                            <h3 className="uppercase font-medium font-sans text-slate-700 underline">{this.props.user.usersName}</h3> : 
+                                            <h3 className="uppercase font-medium font-sans text-slate-200 underline">{this.props.user.usersName}</h3> : 
                                         <div></div>
                                     }
                                     <span className={this.state.showDropDown ? "dropdown-marker-active" : "dropdown-marker-inactive"}>
-                                        <ChevronRightIcon className="h-4 w-4"></ChevronRightIcon>
+                                        <ChevronRightIcon className="h-4 w-4 text-slate-200"></ChevronRightIcon>
                                     </span>
                                 </div>
                             </div>

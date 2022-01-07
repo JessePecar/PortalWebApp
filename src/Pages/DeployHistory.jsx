@@ -28,7 +28,7 @@ export class DeployHistory extends Component{
                         <h3 className="uppercase font-medium font-sans text-slate-700">Deployment History</h3>
                     </div>
                 </div>
-                <div className="w-full flex justify-center p-8">
+                <div className="w-full flex justify-center p-8 ">
                     <ul className="w-3/4 list-none border border-slate-700 rounded">
                         <li className="bg-slate-700 py-2 mb-2">
                             <div className="w-full flex space-x-4 items-center divide-x">

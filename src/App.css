@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
+.dropdown-invisible{
+    display: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.dropdown-visible{
+    animation: fadeIn 0.25s;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+.input-label-hidden{
+    opacity: 0;
 }
 
-.App-link {
-  color: #61dafb;
+.input-label-visible{
+    animation: fadeIn 0.25s;
 }
 
-@keyframes App-logo-spin {
-  from {
+.shadow-none{
+   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow) !important;
+
+}
+
+.dropdown-marker-active{
+    transform: rotate(90deg);
+    transition: all 0.25s ease-in-out;
+}
+.dropdown-marker-inactive {
     transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    transition: all 0.25s ease-in-out;
 }
+
+

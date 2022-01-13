@@ -21,14 +21,14 @@ export class DropDownList extends Component {
                         <StandardLabel dark={true}>-----</StandardLabel>
                     </li>
                     {
-                        this.props.items ?
+                        this.props.items &&
                             this.props.items.map((item, index) => {
                                 return (
                                     <li key={index} className="px-2 hover:bg-slate-600 cursor-pointer" onClick={() => this.selectedItem(item)}>
                                         <StandardLabel dark={true}>{item}</StandardLabel>
                                     </li>
                                 )
-                            }) : null
+                            })
                     }
                 </ul>
             }>

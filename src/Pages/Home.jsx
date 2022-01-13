@@ -8,6 +8,7 @@ import { Deployments } from './Deployments.jsx'
 import { CurrentUsers } from './CurrentUsers.jsx'
 import { DeployHistory } from './DeployHistory.jsx'
 import Landing from './Landing.jsx'
+import ErrorPage from './ErrorPage.jsx'
 import { RequestAccessModal } from '../Components/RequestAccessModal.jsx'
 import StandardLabel from '../Components/StandardLabel.jsx'
 import { Routes, Route, NavLink } from "react-router-dom";
@@ -102,7 +103,7 @@ export class Home extends react.Component{
 
                             <RoleBasedNavigation user={this.state.user}></RoleBasedNavigation>
                         </div>
-                        <div className="pt-2 p-4 h-16 w-1/6">
+                        <div className="p-2 h-16 w-1/6">
                             <Login googleUser={this.state.googleUser} user={this.state.user} handleLogin={this.handleLogin} handleLogout={this.handleLogout}></Login>
                         </div>        
                     </div>
@@ -112,19 +113,7 @@ export class Home extends react.Component{
                     <Routes>
                         <Route path="/" element={<Landing></Landing>}></Route>
 
-                        <Route path="*" element={
-                            <div className="justify-center items-center flex overflow-x-hidden fixed inset-0">
-                                <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                                    <div className="flex justify-center">
-                                        <div>
-                                            <StandardLabel label="Oops! You have stumbled into the wrong den, and you should turn around now!"></StandardLabel>
-                                            <div className="w-full flex justify-center">
-                                                <NavLink to="/" className="bg-slate-700 text-slate-200 rounded-full px-4 py-2 mt-8 uppercase text-md font-bold">Return to safety</NavLink>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>}>
+                        <Route path="*" element={<ErrorPage></ErrorPage>}>
                         </Route>
                         {this.state.user ? <Route path="/DeployHistory" element={<DeployHistory></DeployHistory>}></Route> : null }
                         {this.state.user && this.state.user.appRole !== window.appConfigs.Roles.ReadonlyUser ? <Route path="/CreateService" element={<CreateService user={this.state.user}></CreateService>}></Route> : null }

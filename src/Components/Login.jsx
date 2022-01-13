@@ -41,7 +41,7 @@ export class Login extends Component{
 
     render(){
         return(
-            <div className="flex">
+            <div className="flex items-end justify-end h-full">
                 { this.props.googleUser !== null 
                     ? 
                     <div>
@@ -49,14 +49,12 @@ export class Login extends Component{
                             <div className="px-4 flex space-x-4 rounded hover:bg-slate-600">
                                 <div className="flex space-x-6 items-center h-12">
                                     {
-                                        this.props.user ?  
-                                            <img src={this.props.user.imageUrl} alt="N/A" className="h-10 w-10 rounded-full"/> :
-                                            <div></div>
+                                        this.props.user &&  
+                                            <img src={this.props.user.imageUrl} alt="N/A" className="h-10 w-10 rounded-full"/> 
                                     }
                                     {
-                                        this.props.user ?
-                                            <h3 className="uppercase font-medium font-sans text-slate-200 underline">{this.props.user.usersName}</h3> : 
-                                        <div></div>
+                                        this.props.user &&
+                                            <h3 className="uppercase font-medium font-sans text-slate-200 underline">{this.props.user.usersName}</h3>
                                     }
                                     <span className={this.state.showDropDown ? "dropdown-marker-active" : "dropdown-marker-inactive"}>
                                         <ChevronRightIcon className="h-4 w-4 text-slate-200"></ChevronRightIcon>
@@ -67,21 +65,18 @@ export class Login extends Component{
                         <div className={`${this.state.showDropDown ? "dropdown-visible" : "dropdown-invisible"} mt-2 rounded bg-slate-200 divide-y divide-gray-100 shadow`}>
                             <div className="text-slate-700 py-3 px-4">
                             {
-                                this.props.user ?  
-                                    <span className="block uppercase font-medium">{this.props.user.appRole}</span> :
-                                    <span></span>
+                                this.props.user && 
+                                    <span className="block uppercase font-medium">{this.props.user.appRole}</span> 
                             }
                             {
-                                this.props.user ?  
-                                    <span className="border-b border-slate-300 mb-2 block uppercase font-medium">{this.props.user.email}</span> :
-                                    <span></span>
+                                this.props.user &&  
+                                    <span className="border-b border-slate-300 mb-2 block uppercase font-medium">{this.props.user.email}</span>
                             }
                             {
-                                this.props.user && this.props.user.userGroups ?
+                                this.props.user && this.props.user.userGroups &&
                                 this.props.user.userGroups.map((group, index) => {
                                     return (<span key={index} className="block uppercase font-medium">{group.code} - {group.groupRoleCode}</span>)
                                 })
-                                : <span></span>
                             }
                             
                             </div>
@@ -106,7 +101,7 @@ export class Login extends Component{
                         </div> 
                     </div>
                     : 
-                    <div className="flex items-center">
+                    <div className="">
                         <GoogleLogin
                             clientId={this.state.clientId}
                             buttonText="Login"

@@ -162,7 +162,7 @@ export class Deployments extends Component{
                     <div className="w-3/4">
                         {
                             //TODO: Create this functionality in the drop down
-                            this.state.selectedService ?
+                            this.state.selectedService &&
                                 <div className="w-full">
                                     <TextImageButton id="addDropdownInit" data-dropdown-toggle="userDropdownToggle" onClick={this.toggleAddDropDown} buttonText="Add" image={<PlusIcon className="h-5 w-5 text-white"></PlusIcon>}></TextImageButton>
                                     <div className={`${this.state.showDropDown ? "dropdown-visible" : "dropdown-invisible"} absolute mt-8 rounded w-3/4 bg-slate-200 divide-y divide-gray-100 shadow`}>
@@ -181,12 +181,12 @@ export class Deployments extends Component{
                                             }
                                         </ul>
                                     </div>
-                                </div> : null
+                                </div>
                         }
                     </div>
                 </div>
                 {
-                    this.state.selectedService ?
+                    this.state.selectedService &&
                     <div className="w-full flex justify-center p-8">
                         <div className="w-3/4 rounded border border-slate-700 shadow-lg h-full">
                             <ul className="w-full list-none border border-slate-700 rounded divide-y divide-slate-300">
@@ -220,7 +220,7 @@ export class Deployments extends Component{
                                 }
                             </ul>
                         </div>
-                    </div> : null
+                    </div> 
                 }
             </div>
         )

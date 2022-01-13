@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import '../App.css'
-import { DropDown } from './DropDown.jsx'
+import { DropDownList } from './DropDownList.jsx'
 import PropTypes from 'prop-types'
 
 export class ServiceTypeSelect extends Component{
@@ -19,7 +19,7 @@ export class ServiceTypeSelect extends Component{
 
     render(){
         return(
-            <DropDown items={this.state.serviceTypes} selectedItemChanged={this.selectedItem}>{this.props.user.roleCode}</DropDown>
+            <DropDownList items={this.state.serviceTypes} selectedItemChanged={this.selectedItem}>{this.props.user.roleCode}</DropDownList>
         )
     }
 }

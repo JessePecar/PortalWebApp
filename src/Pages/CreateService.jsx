@@ -59,8 +59,6 @@ export class CreateService extends Component{
                         </div>
                     </div>
                 </div>
-                
-                
             </div>
         )
     }

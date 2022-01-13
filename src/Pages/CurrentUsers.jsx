@@ -105,7 +105,6 @@ export class CurrentUsers extends Component{
                                 <h3 className="bg-slate-100 rounded-full shadow px-4 uppercase font-medium font-sans text-slate-700">No Requested Users</h3>
                             </li>
                         }
-
                         </ul>
                     </div>
                 }

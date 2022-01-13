@@ -31,18 +31,17 @@ export default class DropDown extends Component{
             <div className="w-full">
                 <DisabledButton
                     isDisabled={this.props.isDisabled} 
-                    class={`${this.props.width} relative`} 
+                    class={`${this.props.width} static`} 
                     onClick={this.toggleModal}
                     noBorder={true}
                     >
-                    <div className="flex space-x-1 items-center ">
+                    <div className="flex space-x-1 items-center static">
                         {this.props.buttonElement}
-                        <span className={`${this.state.showDropDown ? "dropdown-marker-active" : "dropdown-marker-inactive"} float-right`}>
-                            <ChevronRightIcon className="h-4 w-4"></ChevronRightIcon>
-                        </span>
+                        <ChevronRightIcon className={`${this.state.showDropDown ? "dropdown-marker-active" : "dropdown-marker-inactive"} h-4 w-4`}></ChevronRightIcon>
                     </div>
                 </DisabledButton>
-                <div onClick={this.toggleModal} className={`${this.state.showDropDown ? "dropdown-visible" : "dropdown-invisible"} ${this.props.width} rounded z-10 mt-4 absolute`}>
+                <div onClick={this.toggleModal} 
+                    className={`${this.state.showDropDown ? "dropdown-visible" : "dropdown-invisible"} ${this.props.modalWidth} rounded mt-4 absolute`}>
                    {this.props.children}
                 </div> 
             </div>
@@ -54,5 +53,6 @@ DisabledButton.propTypes = {
     isDisabled: PropTypes.bool,
     buttonElement: PropTypes.element,
     children: PropTypes.element,
-    width: PropTypes.string
+    width: PropTypes.string,
+    modalWidth: PropTypes.string
 }

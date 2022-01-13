@@ -10,11 +10,11 @@ export default class TextImageButton extends Component{
     render(){
         return(
             <button 
-                className={`rounded-full shadow px-4 py-1 ${`bg-${this.props.color}-700`}`}
+                className={`rounded-full shadow px-4 py-1 bg-green-700`}
                 onClick={this.props.onClick}>
                 <div className="flex items-center">
                     {this.props.image}
-                    <StandardLabel dark={true} label={this.props.buttonText}></StandardLabel>
+                    <StandardLabel dark={true}>{this.props.buttonText}</StandardLabel>
                 </div>
             </button>
         )
@@ -25,5 +25,5 @@ TextImageButton.propTypes = {
     image: PropTypes.element,
     buttonText: PropTypes.string,
     onClick: PropTypes.func,
-    color: PropTypes.string
+    class: PropTypes.string
 }

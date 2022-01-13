@@ -4,6 +4,7 @@
 
 .dropdown-visible{
     animation: fadeIn 0.25s;
+    display: block;
 }
 
 @keyframes fadeIn {

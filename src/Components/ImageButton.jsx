@@ -9,7 +9,7 @@ export default class ImageButton extends Component{
     render(){
         return(
             <button 
-                className={`rounded-full shadow px-4 py-2 bg-${this.props.color}-700`}
+                className={`rounded-full shadow px-4 py-2  bg-red-700`}
                 onClick={this.props.onClick}>{this.props.image}</button>
         )
     }
@@ -18,5 +18,6 @@ export default class ImageButton extends Component{
 ImageButton.propTypes = {
     image: PropTypes.element,
     onClick: PropTypes.func,
-    color: PropTypes.string
+    class: PropTypes.string,
+    
 }

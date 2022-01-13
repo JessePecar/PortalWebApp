@@ -8,7 +8,9 @@ export default class StandardLabel extends Component{
 
     render(){
         return(
-            <h3 className={`pl-2 uppercase md:text-sm lg:text-base font-medium font-sans text-slate-${this.props.dark ? "200" : "700"} ${this.props.class}`}>{this.props.label}</h3>
+            <h3 className={`pl-2 uppercase md:text-sm lg:text-base font-medium font-sans text-slate-${this.props.dark ? "200" : "700"} ${this.props.class}`}>
+                {this.props.children ? this.props.children : this.props.label}
+            </h3>
         )
     }
 }

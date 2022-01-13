@@ -3,13 +3,14 @@ import {Login} from '../Components/Login.jsx'
 import axios from 'axios'
 import RoleBasedNavigation from '../Components/RoleBasedNavigation.jsx'
 import { RequestedUsers } from './RequestedUsers.jsx'
-import { CreateDeploy } from './CreateDeploy.jsx'
-import { ModifyDeploy } from './ModifyDeploy.jsx'
+import { CreateService } from './CreateService.jsx'
+import { Deployments } from './Deployments.jsx'
 import { CurrentUsers } from './CurrentUsers.jsx'
 import { DeployHistory } from './DeployHistory.jsx'
+import Landing from './Landing.jsx'
 import { RequestAccessModal } from '../Components/RequestAccessModal.jsx'
 import StandardLabel from '../Components/StandardLabel.jsx'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, NavLink } from "react-router-dom";
 import Cookies from 'universal-cookie'
 
 export class Home extends react.Component{
@@ -94,34 +95,46 @@ export class Home extends react.Component{
 
     render(){
         return (
-            <div className="w-full h-screen overflow-y-hidden">
-                <div className="w-full flex bg-slate-700  drop-shadow-2xl">
-                    <div className="w-full flex justify-start px-8 items-center space-x-8">
-                        <h1 className="text-lg font-sans text-slate-200 font-medium">Portal Service</h1>
-                        <RoleBasedNavigation user={this.state.user}></RoleBasedNavigation>
+            <div className="w-full h-screen">
+                <div className="fixed inset-0 h-16">
+                    <div className="w-full flex justify-between items-center bg-slate-700  drop-shadow-2xl">
+                        <div className="w-full flex px-8 items-center space-x-8">
+
+                            <RoleBasedNavigation user={this.state.user}></RoleBasedNavigation>
+                        </div>
+                        <div className="pt-2 p-4 h-16 w-1/6">
+                            <Login googleUser={this.state.googleUser} user={this.state.user} handleLogin={this.handleLogin} handleLogout={this.handleLogout}></Login>
+                        </div>        
                     </div>
-                    <div className="w-full flex justify-end  pt-2 p-4 h-16">
-                        <Login googleUser={this.state.googleUser} user={this.state.user} handleLogin={this.handleLogin} handleLogout={this.handleLogout}></Login>
-                    </div>        
                 </div>
                 <RequestAccessModal showModal={this.state.showRequestAccessModal} requestAccess={this.handleRequestAccess} closeModal={this.closeModal}></RequestAccessModal>
+                <div className="mt-16">
+                    <Routes>
+                        <Route path="/" element={<Landing></Landing>}></Route>
 
-                <Routes>
-                    <Route path="/"></Route>
-
-                    <Route path="*" element={
-                        <div className="w-full h-full flex items-center justify-center">
-                            <StandardLabel label="Oops! You have stumbled into the wrong den, and you should turn around now!"></StandardLabel>
-                        </div>}>
-                    </Route>
-                    {this.state.user ? <Route path="/DeployHistory" element={<DeployHistory></DeployHistory>}></Route> : null }
-                    {this.state.user && this.state.user.appRole !== window.appConfigs.Roles.ReadonlyUser ? <Route path="/Create" element={<CreateDeploy ownerId={this.state.user.googleId}></CreateDeploy>}></Route> : null }
-                    {this.state.user && this.state.user.appRole !== window.appConfigs.Roles.ReadonlyUser ? <Route path="/Modify" element={<ModifyDeploy ownerId={this.state.user.googleId}></ModifyDeploy>}></Route> : null }
-                    {this.state.user && this.state.user.appRole === window.appConfigs.Roles.Admin ? <Route path="/RequestedUsers" element={<RequestedUsers></RequestedUsers>}></Route> : null }
-                    {this.state.user && this.state.user.appRole === window.appConfigs.Roles.Admin ? <Route path="/CurrentUsers" element={<CurrentUsers></CurrentUsers>}></Route> : null}
-                    {this.state.user && this.state.user.appRole !== window.appConfigs.Roles.ReadonlyUser && this.state.user.appRole !== window.appConfigs.Roles.Developer 
-                        ? <Route path="/ManageUsers" element={<CurrentUsers></CurrentUsers>}></Route> : null }
-                </Routes>
+                        <Route path="*" element={
+                            <div className="justify-center items-center flex overflow-x-hidden fixed inset-0">
+                                <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                                    <div className="flex justify-center">
+                                        <div>
+                                            <StandardLabel label="Oops! You have stumbled into the wrong den, and you should turn around now!"></StandardLabel>
+                                            <div className="w-full flex justify-center">
+                                                <NavLink to="/" className="bg-slate-700 text-slate-200 rounded-full px-4 py-2 mt-8 uppercase text-md font-bold">Return to safety</NavLink>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>}>
+                        </Route>
+                        {this.state.user ? <Route path="/DeployHistory" element={<DeployHistory></DeployHistory>}></Route> : null }
+                        {this.state.user && this.state.user.appRole !== window.appConfigs.Roles.ReadonlyUser ? <Route path="/CreateService" element={<CreateService user={this.state.user}></CreateService>}></Route> : null }
+                        {this.state.user && this.state.user.appRole !== window.appConfigs.Roles.ReadonlyUser ? <Route path="/Deployment" element={<Deployments user={this.state.user}></Deployments>}></Route> : null }
+                        {this.state.user && this.state.user.appRole === window.appConfigs.Roles.Admin ? <Route path="/RequestedUsers" element={<RequestedUsers></RequestedUsers>}></Route> : null }
+                        {this.state.user && this.state.user.appRole === window.appConfigs.Roles.Admin ? <Route path="/CurrentUsers" element={<CurrentUsers></CurrentUsers>}></Route> : null}
+                        {this.state.user && this.state.user.appRole !== window.appConfigs.Roles.ReadonlyUser && this.state.user.appRole !== window.appConfigs.Roles.Developer 
+                            ? <Route path="/ManageUsers" element={<CurrentUsers></CurrentUsers>}></Route> : null }
+                    </Routes>
+                </div>
             </div>
         )
     }

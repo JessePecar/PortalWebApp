@@ -15,8 +15,11 @@ export default class RoleBasedNavigation extends Component{
                 return(
                     <div>
                         <ul className="list-none flex space-x-4 divide-x divide-slate-600">
+                            <li className="pl-2 text-slate-100 bg-slate-700 rounded p-2">
+                                <NavLink to="/" className={`text-lg font-sans font-medium`}>Portal Service</NavLink>
+                            </li>
                             <li className="pl-2" >
-                                <ButtonModal width="w-48" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Deployment"></StandardLabel>}>
+                                <ButtonModal width="w-40" modalWidth="w-52" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Deployment"></StandardLabel>}>
                                     <ul className="text-slate-100 bg-slate-700 rounded p-2">
                                         <li className="px-2 my-2 hover:bg-slate-600">
                                             <NavLink to="/DeployHistory" className={`text-lg font-sans font-medium`}>Deploy History</NavLink>
@@ -25,16 +28,13 @@ export default class RoleBasedNavigation extends Component{
                                             <NavLink to="/CreateService" className={`text-lg font-sans font-medium`}>Create Service</NavLink>
                                         </li>
                                         <li className="px-2 my-2 hover:bg-slate-600">
-                                            <NavLink to="/Create" className={`text-lg font-sans font-medium`}>Create Deploy</NavLink>
-                                        </li>
-                                        <li className="px-2 my-2 hover:bg-slate-600">
-                                            <NavLink to="/Modify" className={`text-lg font-sans font-medium`}>Modify Deploy</NavLink>
+                                            <NavLink to="/Deployment" className={`text-lg font-sans font-medium`}>Service Deployment</NavLink>
                                         </li>
                                     </ul>
                                 </ButtonModal>
                             </li>
                             <li className="pl-2">
-                                <ButtonModal width="w-48" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Users"></StandardLabel>}>
+                                <ButtonModal width="w-40" modalWidth="w-52" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Users"></StandardLabel>}>
                                     <ul className="text-slate-100 bg-slate-700 rounded p-2">
                                         <li className="px-2 my-2 hover:bg-slate-600">
                                             <NavLink to="/RequestedUsers" className={`text-lg font-sans font-medium h-full`}>Requested Users</NavLink>
@@ -58,7 +58,7 @@ export default class RoleBasedNavigation extends Component{
                     <div>
                         <ul className="list-none flex space-x-4 divide-x divide-slate-600">
                             <li className="pl-2">
-                                <ButtonModal width="w-48" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Deployment"></StandardLabel>}>
+                                <ButtonModal width="w-40" modalWidth="w-52" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Deployment"></StandardLabel>}>
                                     <ul className="text-slate-100 bg-slate-700 rounded p-2">
                                         <li className="px-2 my-2 hover:bg-slate-600">
                                             <NavLink to={this.props.user ? "/DeployHistory" : "/"} className={`text-lg font-sans font-medium`}>Deploy History</NavLink>
@@ -76,7 +76,7 @@ export default class RoleBasedNavigation extends Component{
                         {
                             this.props.user.userGroups ?
                             <li className="pl-2">
-                                <ButtonModal width="w-48" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Deployment"></StandardLabel>}>
+                                    <ButtonModal width="w-40" modalWidth="w-52" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Deployment"></StandardLabel>}>
                                     <ul className="text-slate-100 bg-slate-700 rounded p-2">
                                         <li className="px-2 my-2 hover:bg-slate-600" >
                                             <NavLink to="/DeployHistory" className={`text-lg font-sans font-medium`}>Deploy History</NavLink>
@@ -88,15 +88,9 @@ export default class RoleBasedNavigation extends Component{
                                                 </li> : null
                                         }
                                         {
-                                            this.props.user.userGroups && this.props.user.userGroups.filter(ug => ug.groupRoleCode === window.appConfigs.GroupRoles.GroupOwner).length > 0 ?
-                                            <li className="px-2 my-2 hover:bg-slate-600">
-                                                <NavLink to="/Create" className={`text-lg font-sans font-medium`}>Create Deploy</NavLink>
-                                            </li> : null
-                                        }
-                                        {
                                             this.props.user.userGroups && this.props.user.userGroups.filter(ug => ug.groupRoleCode !== window.appConfigs.GroupRoles.GroupReader).length > 0 ?
                                             <li className="px-2 my-2 hover:bg-slate-600">
-                                                <NavLink to="/Modify" className={`text-lg font-sans font-medium`}>Modify Deploy</NavLink>
+                                                <NavLink to="/Deployment" className={`text-lg font-sans font-medium`}>Service Deployment</NavLink>
                                             </li> : null
                                         }
                                     </ul>
@@ -106,7 +100,7 @@ export default class RoleBasedNavigation extends Component{
                         {
                             this.props.user.appRole === window.appConfigs.Roles.Admin || this.props.user.appRole === window.appConfigs.Roles.Owner ?
                                 <li className="pl-2">
-                                    <ButtonModal width="w-48" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Users"></StandardLabel>}>
+                                    <ButtonModal width="w-40" modalWidth="w-52" isDisabled={false} buttonElement={<StandardLabel dark={true} label="Users"></StandardLabel>}>
                                         <ul className="text-slate-100 bg-slate-700 rounded p-2">
                                             {
                                                 this.props.user && this.props.user.appRole === window.appConfigs.Roles.Admin ?

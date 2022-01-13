@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import '../App.css'
-import { DropDown } from './DropDown.jsx'
+import { DropDownList } from './DropDownList.jsx'
 
 export class RoleSelect extends Component{
     constructor(props){
@@ -18,7 +18,7 @@ export class RoleSelect extends Component{
 
     render(){
         return(
-            <DropDown items={this.state.roles} buttonText={this.props.user.roleCode} selectedItemChanged={this.selectedItem}></DropDown>
+            <DropDownList items={this.state.roles} selectedItemChanged={this.selectedItem}>{this.props.user.roleCode}</DropDownList>
         )
     }
 }
